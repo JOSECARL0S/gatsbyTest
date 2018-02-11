@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
+import './dog-post.css';
+
 class DogPost extends Component {
   render() {
     const dog = this.props.data.contentfulDog;
@@ -31,7 +33,7 @@ export const pageQuery = graphql`
     contentfulDog(slug: { eq: $slug }) {
       name
       image {
-        resolutions(width: 200, height: 200) {
+        resolutions {
           src
         }
       }

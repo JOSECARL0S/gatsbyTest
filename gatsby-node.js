@@ -10,7 +10,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const dogPostTemplate = path.resolve('src/templates/blog-post.js');
+    const dogPostTemplate = path.resolve('src/templates/dog-post.js');
     resolve(graphql(`
         {
           allContentfulDog(limit: 100) {
@@ -32,9 +32,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component: dogPostTemplate,
           context: {
             slug: edge.node.slug,
-          },
+          }
         });
       });
+      return
     }));
   });
-};
+}; 

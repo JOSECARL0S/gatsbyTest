@@ -1,13 +1,46 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from 'react';
+import Link from 'gatsby-link';
+import Img from 'gatsby-image';
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
-)
+const DogPost = ({ node }) => (
+  <li className="dogPost">
+    <Link to={node.slug}>
+      <Img resolutions={node.image[0].responsiveResolution} />
+    </Link>
+    <div className="innerContent">
+      <Link to={node.slug}>{node.name}</Link>
+      <span>Geschlecht: {node.sex}</span>
+      <span>Rasse: {node.breed}</span>
+      <Link to={node.slug}>mehr erfahren</Link>
+    </div>
+  </li>
+);
 
-export default IndexPage
+const IndexPage = ({ data }) => (
+  <ul>
+    {data.allContentfulDog.edges.map(edge => <DogPost key={edge.node.id} node={edge.node} />)}
+  </ul>
+);
+
+export default IndexPage;
+
+export const pageQuery = graphql`
+  query pageQuery {
+    allContentfulDog(sort: { fields: [createdAt], order: DESC }) {
+      edges {
+        node {
+          id
+          name
+          sex
+          breed
+          slug
+          image {
+            responsiveResolution {
+              src
+            }
+          }
+        }
+      }
+    }
+  }
+`;

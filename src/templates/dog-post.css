@@ -1,0 +1,21 @@
+.gatsby-image-wrapper img {
+  position: relative !important;
+}
+
+li.dogPost {
+  border: 1px solid #c9c9c9;
+  list-style: none;
+  width: 50%;
+}
+li.dogPost .gatsby-image-wrapper {
+  width: 100%;
+}
+li.dogPost .gatsby-image-wrapper img {
+  margin: 0;
+}
+.dogPost .innerContent {
+  padding: 20px;
+}
+.dogPost .innerContent span {
+  display: block;
+}
