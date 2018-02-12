@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import config from '../../../data/SiteConfig';
 
 const Header = () => (
   <div
@@ -23,7 +24,7 @@ const Header = () => (
             textDecoration: 'none',
           }}
         >
-          Puppy Gallery Test
+          {config.siteTitle}
         </Link>
       </h1>
     </div>
