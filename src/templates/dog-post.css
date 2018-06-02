@@ -5,7 +5,7 @@
 li.dogPost {
   border: 1px solid #c9c9c9;
   list-style: none;
-  width: 50%;
+  /* width: 50%; */
 }
 li.dogPost .gatsby-image-wrapper {
   width: 100%;

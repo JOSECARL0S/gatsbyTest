@@ -16,26 +16,25 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           allContentfulDog(limit: 100) {
             edges {
               node {
-                id
                 slug
               }
             }
           }
         }
       `).then((result) => {
-      if (result.errors) {
-        reject(result.errors);
-      }
-      result.data.allContentfulDog.edges.forEach((edge) => {
-        createPage({
-          path: edge.node.slug,
-          component: dogPostTemplate,
-          context: {
-            slug: edge.node.slug,
-          }
+        if (result.errors) {
+          reject(result.errors);
+        }
+        result.data.allContentfulDog.edges.forEach((edge) => {
+          createPage({
+            path: edge.node.slug,
+            component: dogPostTemplate,
+            context: {
+              slug: edge.node.slug,
+            }
+          });
         });
-      });
-      return
-    }));
+        return
+      }));
   });
 }; 

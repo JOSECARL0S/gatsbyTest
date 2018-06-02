@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import Img from 'gatsby-image';
 
 const DogPost = ({ node }) => (
-  <li className="dogPost">
+  <div className="dogPost">
     <Link to={node.slug}>
       <Img resolutions={node.image[0].responsiveResolution} />
     </Link>
@@ -13,13 +13,19 @@ const DogPost = ({ node }) => (
       <span>Rasse: {node.breed}</span>
       <Link to={node.slug}>mehr erfahren</Link>
     </div>
-  </li>
+  </div>
 );
 
 const IndexPage = ({ data }) => (
-  <ul>
+  <div style={{
+    display: 'grid',
+    gridGap: '20px',
+    // gridTemplateColumns: "repeat(auto-fit, minmax('150px, 1fr'))"
+    // gridTemplateColumns: '1fr 1fr 1fr',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+  }}>
     {data.allContentfulDog.edges.map(edge => <DogPost key={edge.node.id} node={edge.node} />)}
-  </ul>
+  </div>
 );
 
 export default IndexPage;
@@ -35,7 +41,7 @@ export const pageQuery = graphql`
           breed
           slug
           image {
-            responsiveResolution {
+            responsiveResolution (height: 250) {
               src
             }
           }
